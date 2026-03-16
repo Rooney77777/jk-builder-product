@@ -8,19 +8,21 @@ const body = document.body;
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
     body.classList.add('dark-mode');
-    themeBtn.textContent = 'Light Mode';
+    if (themeBtn) themeBtn.textContent = 'Light Mode';
 }
 
-themeBtn.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-        themeBtn.textContent = 'Light Mode';
-        localStorage.setItem('theme', 'dark');
-    } else {
-        themeBtn.textContent = 'Dark Mode';
-        localStorage.setItem('theme', 'light');
-    }
-});
+if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            themeBtn.textContent = 'Light Mode';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            themeBtn.textContent = 'Dark Mode';
+            localStorage.setItem('theme', 'light');
+        }
+    });
+}
 
 function getBallClass(num) {
     if (num <= 10) return 'ball-1';
@@ -38,31 +40,31 @@ function generateLottoSet() {
     return Array.from(numbers).sort((a, b) => a - b);
 }
 
-generateBtn.addEventListener('click', () => {
-    // Add machine animation
-    machineSphere.classList.add('spinning');
-    generateBtn.disabled = true;
-    resultsGrid.innerHTML = '';
+if (generateBtn) {
+    generateBtn.addEventListener('click', () => {
+        if (machineSphere) machineSphere.classList.add('spinning');
+        generateBtn.disabled = true;
+        resultsGrid.innerHTML = '';
 
-    setTimeout(() => {
-        machineSphere.classList.remove('spinning');
-        generateBtn.disabled = false;
+        setTimeout(() => {
+            if (machineSphere) machineSphere.classList.remove('spinning');
+            generateBtn.disabled = false;
 
-        // Generate 5 sets
-        for (let i = 0; i < 5; i++) {
-            const set = generateLottoSet();
-            const row = document.createElement('div');
-            row.classList.add('row-container');
-            row.style.animationDelay = `${i * 0.1}s`;
+            for (let i = 0; i < 5; i++) {
+                const set = generateLottoSet();
+                const row = document.createElement('div');
+                row.classList.add('row-container');
+                row.style.animationDelay = `${i * 0.1}s`;
 
-            set.forEach(num => {
-                const ball = document.createElement('div');
-                ball.classList.add('lotto-number', getBallClass(num));
-                ball.textContent = num;
-                row.appendChild(ball);
-            });
+                set.forEach(num => {
+                    const ball = document.createElement('div');
+                    ball.classList.add('lotto-number', getBallClass(num));
+                    ball.textContent = num;
+                    row.appendChild(ball);
+                });
 
-            resultsGrid.appendChild(row);
-        }
-    }, 1000);
-});
+                resultsGrid.appendChild(row);
+            }
+        }, 1000);
+    });
+}
