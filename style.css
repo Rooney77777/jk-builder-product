@@ -178,9 +178,14 @@ h1 {
 }
 
 /* Navigation Buttons */
-.partnership-footer, .back-footer {
+.partnership-footer, .back-footer, .comments-section {
     margin-top: 2rem;
     padding-top: 1rem;
+}
+
+.comments-section {
+    text-align: left;
+    margin-top: 3rem;
 }
 
 .nav-btn {
