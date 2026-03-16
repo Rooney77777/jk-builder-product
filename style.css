@@ -1,9 +1,19 @@
 :root {
+    --background-color: #f8f9fa;
+    --primary-color: #28a745;
+    --card-background: #ffffff;
+    --text-color: #212529;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --btn-text: #ffffff;
+}
+
+body.dark-mode {
     --background-color: #121212;
     --primary-color: #1DB954;
     --card-background: #1E1E1E;
     --text-color: #FFFFFF;
     --shadow-color: rgba(0, 0, 0, 0.5);
+    --btn-text: #ffffff;
 }
 
 body {
@@ -15,6 +25,24 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#theme-btn {
+    background: var(--card-background);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
 }
 
 .container {
@@ -25,7 +53,7 @@ h1 {
     font-size: 3rem;
     color: var(--primary-color);
     margin-bottom: 2rem;
-    text-shadow: 0 0 10px var(--primary-color);
+    text-shadow: 0 0 5px var(--shadow-color);
 }
 
 .lotto-numbers-container {
@@ -33,44 +61,47 @@ h1 {
     justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .lotto-number {
     background-color: var(--card-background);
+    color: var(--text-color);
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    box-shadow: 0 5px 15px var(--shadow-color);
+    box-shadow: 0 4px 6px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid var(--primary-color);
 }
 
 .lotto-number:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px var(--shadow-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px var(--shadow-color);
 }
 
 .generate-btn {
     background-color: var(--primary-color);
-    color: var(--text-color);
+    color: var(--btn-text);
     border: none;
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     font-size: 1.2rem;
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .generate-btn:hover {
-    background-color: #1ED760;
+    opacity: 0.9;
     transform: scale(1.05);
 }
 
 .generate-btn:active {
-    transform: scale(1);
+    transform: scale(0.98);
 }
