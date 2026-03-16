@@ -209,3 +209,70 @@ h1 {
 .b2 { background: #e74c3c; top: 60%; left: 50%; }
 .b3 { background: #3498db; top: 50%; left: 70%; }
 .b4 { background: #2ecc71; top: 70%; left: 20%; }
+
+/* Partnership Form Styles */
+.partnership-section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+}
+
+.separator {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--shadow-color), rgba(0, 0, 0, 0));
+    margin-bottom: 2rem;
+}
+
+.partnership-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--shadow-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
