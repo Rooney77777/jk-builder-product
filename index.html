@@ -3,17 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>Premium Lotto Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="theme-toggle">
         <button id="theme-btn">Dark Mode</button>
     </div>
+    
     <div class="container">
-        <h1>Lotto Number Generator</h1>
-        <div id="lotto-numbers" class="lotto-numbers-container"></div>
-        <button id="generate-btn" class="generate-btn">Generate Numbers</button>
+        <div class="machine-container">
+            <div class="glass-sphere">
+                <div class="inner-glow"></div>
+                <div class="balls-inside" id="machine-balls">
+                    <!-- Decorative balls -->
+                    <div class="ball-deco b1"></div>
+                    <div class="ball-deco b2"></div>
+                    <div class="ball-deco b3"></div>
+                    <div class="ball-deco b4"></div>
+                </div>
+            </div>
+            <div class="machine-base">
+                <div class="exit-chute"></div>
+            </div>
+        </div>
+
+        <h1>Premium Lotto</h1>
+        
+        <div id="lotto-results" class="results-grid">
+            <!-- 5 rows will be generated here -->
+        </div>
+
+        <button id="generate-btn" class="generate-btn">Draw 5 Sets</button>
     </div>
     <script src="main.js"></script>
 </body>

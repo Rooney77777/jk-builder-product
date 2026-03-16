@@ -1,37 +1,42 @@
 :root {
-    --background-color: #f8f9fa;
-    --primary-color: #28a745;
+    --background-color: #f0f2f5;
+    --primary-color: #ffd700; /* Golden for premium feel */
+    --secondary-color: #4a90e2;
     --card-background: #ffffff;
-    --text-color: #212529;
+    --text-color: #2c3e50;
     --shadow-color: rgba(0, 0, 0, 0.1);
     --btn-text: #ffffff;
+    --machine-color: #34495e;
 }
 
 body.dark-mode {
-    --background-color: #121212;
-    --primary-color: #1DB954;
-    --card-background: #1E1E1E;
-    --text-color: #FFFFFF;
-    --shadow-color: rgba(0, 0, 0, 0.5);
-    --btn-text: #ffffff;
+    --background-color: #1a1a1a;
+    --primary-color: #f1c40f;
+    --secondary-color: #3498db;
+    --card-background: #2c2c2c;
+    --text-color: #ecf0f1;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --machine-color: #3e4e5e;
 }
 
 body {
     background-color: var(--background-color);
     color: var(--text-color);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Roboto, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 2rem 0;
+    transition: all 0.3s ease;
 }
 
 .theme-toggle {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
+    z-index: 100;
 }
 
 #theme-btn {
@@ -42,66 +47,165 @@ body {
     border-radius: 20px;
     cursor: pointer;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px var(--shadow-color);
 }
 
 .container {
+    width: 90%;
+    max-width: 600px;
     text-align: center;
+    background: var(--card-background);
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px var(--shadow-color);
 }
 
-h1 {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 2rem;
-    text-shadow: 0 0 5px var(--shadow-color);
+/* Machine Design */
+.machine-container {
+    position: relative;
+    width: 200px;
+    margin: 0 auto 2rem;
 }
 
-.lotto-numbers-container {
+.glass-sphere {
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), rgba(255,255,255,0.1) 60%);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: inset 0 0 20px rgba(255,255,255,0.3), 0 10px 20px var(--shadow-color);
+    backdrop-filter: blur(2px);
+    overflow: hidden;
+}
+
+.inner-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, transparent 40%, var(--secondary-color) 120%);
+    opacity: 0.3;
+}
+
+.machine-base {
+    width: 200px;
+    height: 40px;
+    background: var(--machine-color);
+    border-radius: 10px 10px 30px 30px;
+    margin-top: -10px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.exit-chute {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 30px;
+    background: #2c3e50;
+    border-radius: 0 0 20px 20px;
+}
+
+/* Results */
+.results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.row-container {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding: 0.5rem;
+    border-bottom: 1px dashed var(--shadow-color);
+    animation: slideIn 0.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .lotto-number {
-    background-color: var(--card-background);
-    color: var(--text-color);
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
     font-weight: bold;
-    box-shadow: 0 4px 6px var(--shadow-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
-.lotto-number:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px var(--shadow-color);
+/* Lotto Ball Colors based on number ranges */
+.ball-1 { background-color: #f1c40f; } /* 1-10 Yellow */
+.ball-2 { background-color: #3498db; } /* 11-20 Blue */
+.ball-3 { background-color: #e74c3c; } /* 21-30 Red */
+.ball-4 { background-color: #95a5a6; } /* 31-40 Gray */
+.ball-5 { background-color: #2ecc71; } /* 41-45 Green */
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin: 1rem 0;
+    letter-spacing: 2px;
 }
 
 .generate-btn {
-    background-color: var(--primary-color);
-    color: var(--btn-text);
+    background: linear-gradient(145deg, var(--secondary-color), #2980b9);
+    color: white;
     border: none;
-    padding: 1rem 2.5rem;
-    font-size: 1.2rem;
+    padding: 1.2rem 3rem;
+    font-size: 1.3rem;
+    font-weight: bold;
     border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
 }
 
 .generate-btn:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
 }
 
 .generate-btn:active {
     transform: scale(0.98);
 }
+
+/* Animations */
+.spinning {
+    animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+}
+
+.ball-deco {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.b1 { background: #f1c40f; top: 40%; left: 30%; }
+.b2 { background: #e74c3c; top: 60%; left: 50%; }
+.b3 { background: #3498db; top: 50%; left: 70%; }
+.b4 { background: #2ecc71; top: 70%; left: 20%; }
